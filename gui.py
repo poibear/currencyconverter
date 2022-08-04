@@ -1,7 +1,3 @@
-import sys
-
-sys.path.insert(1, "C:\\Users\\JoshL\\Python\\projects\\currencyconvert") #allow import of currencyconvert from folder
-
 import tkinter as tk
 from currencyconvert import convertCurrency
 
