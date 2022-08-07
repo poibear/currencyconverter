@@ -1,7 +1,8 @@
+import unittest
 import requests
 import time
 
-class convertCurrency:
+class convertCurrency(unittest.TestCase):
 
     currencyrates = "https://api.exchangerate.host/latest?"
 
