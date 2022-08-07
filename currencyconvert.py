@@ -23,7 +23,7 @@ class convertCurrency:
         currencyfetch = requests.get(currencyurl)
         return currencyfetch.json()
     
-    def currenciesToList(self):
+    def currenciesToList(self) -> list:
         """
         Fetches all the known currencies from the API as a JSON and converts it into a list
         
@@ -32,8 +32,8 @@ class convertCurrency:
         """
         currencyjson = self.fetchCurrencies()
         currencylist = []
-        for k, v in currencyjson['rates'].items():
-            currencylist.append(k)
+        for key in currencyjson['rates'].keys():
+            currencylist.append(key)
         return currencylist
     
     def checkforCurrency(self, currencyjson, *args):
@@ -45,7 +45,7 @@ class convertCurrency:
             bool, Boolean represents whether the given currencies exist (returns False if any of the currencies dont exist)
         """
         args = tuple((arg.upper() for arg in args))
-        for key, value in currencyjson["rates"].items():
+        for key in currencyjson["rates"].keys():
             for currency in args:
                 if key == currency:
                     print(f"found exchange rate for currency \"{key}\"")
@@ -100,7 +100,3 @@ class convertCurrency:
             return
 
         return (currentbalance, currentcurrency, converted, convertto)
-
-# debug
-# instance1 = convertCurrency(gui=True)
-# print(instance1.getCurrency(currentcurrency="USD", currentbalance=20.00, newcurrency="gbp"))
