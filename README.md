@@ -2,7 +2,7 @@
 Convert any globally recognized currencies.
 
 ## Dependencies
-The module is written in Python 3.10.5. The minimum Python version that is supported is Python 3.6.
+The module is written in Python 3.10.5. The minimum Python version that is supported is Python 3.10
 
 The following packages are required for installation (if not already preinstalled):
 1. tkinter
