@@ -1,15 +1,19 @@
+#tkinter in google-ish format
 import tkinter as tk
 from tkinter import ttk
-from currencyconvert import convertCurrency
+import sys
+
+sys.path.insert(1, "C:\\Users\\JoshL\\Python\\projects\\currencyconvert") #allow import of currencyconvert from folder
+from currencyconvert import ConvertCurrency
 
 
 class CurrencyConversion:
     """A class that converts currency using the Tkinter module."""
 
-    bgprocess = convertCurrency(gui=True)
+    bgprocess = ConvertCurrency(gui=True)
 
     def __init__(self):
-        self.bgprocess = convertCurrency(gui=True)
+        self.bgprocess = ConvertCurrency(gui=True)
         self.master = self._draw()
 
     def _draw(self):
@@ -30,7 +34,7 @@ class CurrencyConversion:
         fromframe.grid_rowconfigure((0), weight=1)  # by default no weight
         toframe.grid_rowconfigure((0, 1), weight=1)
 
-        currencylist = self.bgprocess.currenciesToList()
+        currencylist = self.bgprocess.currencies_to_list()
 
         # design
         mainfocusfont = ("Poppins", 25)
@@ -85,7 +89,7 @@ class CurrencyConversion:
             toconvert = finalcurrency.get()
             balance = currentbalancetext.get()
             try:
-                info = self.bgprocess.getCurrency(current, balance, toconvert)
+                info = self.bgprocess.get_currency(current, balance, toconvert)
                 tocurrencytext.set(info[2])
                 return info[2]  # not necessary but recommended to notify what we're changing, returns balance of final converted currency
             except ValueError:
@@ -145,7 +149,7 @@ class CurrencyConversion:
         current = current_currency.get()
         toconvert = final_currency.get()
         balance = current_balance.get()
-        info = self.bgprocess.getCurrency(current, balance, toconvert)
+        info = self.bgprocess.get_currency(current, balance, toconvert)
         final_string_var.set(info[2])
         return info[2]  # not necessary but recommended to info what we're changing
 
