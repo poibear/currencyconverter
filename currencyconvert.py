@@ -24,7 +24,7 @@ class ConvertCurrency:
         currencyfetch = requests.get(currencyurl)
         return currencyfetch.json()
 
-    def currencies_to_list(self) -> list:
+    def currencies_to_list(self):
         """
         Fetches all the known currencies from the API as a JSON and converts it into a list
 
@@ -37,7 +37,7 @@ class ConvertCurrency:
             currencylist.append(key)
         return currencylist
 
-    def check_for_currency(self, currencyjson, *args) -> bool | False:
+    def check_for_currency(self, currencyjson, *args):
         """
         Checks whether the given currencies exist in the given json from the api
         Input: currencyjson: dict,
@@ -60,7 +60,7 @@ class ConvertCurrency:
 
     def get_currency(
         self, currentcurrency=None, currentbalance=None, newcurrency=None
-    ) -> tuple | None:
+    ):
         """
         Fetches inputted currencies and returns the exchange rate of one currency for each given.
         Input:
@@ -116,10 +116,12 @@ class ConvertCurrency:
                 f"Invalid input for parameter 'currentbalance'\nReason: Type '{type(currentbalance)}' was inputted instead of '<class 'int'>'"
             )
             return None
+        try:
+            converted = int(str(converted))
+        except ValueError:
+            pass
+        finally:
+            return (currentbalance, currentcurrency, converted, convertto)
 
-        return (currentbalance, currentcurrency, converted, convertto)
-
-
-# debug
-# instance1 = convert_currency(gui=True)
+# instance1 = ConvertCurrency(gui=True)
 # print(instance1.get_currency(currentcurrency="USD", currentbalance=20.00, newcurrency="gbp"))
