@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import ttk
 import sys
 
-sys.path.insert(1, "C:\\Users\\JoshL\\Python\\projects\\currencyconvert") #allow import of currencyconvert from folder
 from currencyconvert import ConvertCurrency
 
 
@@ -167,6 +166,6 @@ class CurrencyConversion:
                 "you haven't set a valid master tk frame for the class yet!\neither leave the parameters be or initialize your own with its custom setup!"
             )
 
-
-obj1 = CurrencyConversion()
-obj1.run()
+if __name__ == "__main__":
+    obj1 = CurrencyConversion()
+    obj1.run()
